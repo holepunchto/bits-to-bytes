@@ -1,0 +1,29 @@
+{
+  "name": "bytes-to-bits",
+  "version": "1.0.0",
+  "description": "Functions for doing bit manipulation of typed arrays",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "test": "standard && brittle test.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hypercore-skunkworks/bytes-to-bits.git"
+  },
+  "author": "Kasper Isager Dalsgarð <kasper@funktionel.co>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hypercore-skunkworks/bytes-to-bits/issues"
+  },
+  "homepage": "https://github.com/hypercore-skunkworks/bytes-to-bits#readme",
+  "dependencies": {
+    "b4a": "^1.5.0"
+  },
+  "devDependencies": {
+    "brittle": "^2.3.1",
+    "standard": "^17.0.0"
+  }
+}
