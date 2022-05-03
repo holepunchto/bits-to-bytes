@@ -1,15 +1,15 @@
-# Bytes to Bits
+# Bits and Bytes
 
 Functions for doing bit manipulation of typed arrays.
 
 ```npm
-npm i bytes-to-bits
+npm i bits-and-bytes
 ```
 
 ## Usage
 
 ```js
-const bits = require('bytes-to-bits')
+const bits = require('bits-and-bytes')
 
 const buffer = Uint8Array.from([0b11001000])
 
