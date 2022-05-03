@@ -1,5 +1,5 @@
 {
-  "name": "bits-and-bytes",
+  "name": "bits-to-bytes",
   "version": "1.0.0",
   "description": "Functions for doing bit manipulation of typed arrays",
   "main": "index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hypercore-skunkworks/bits-and-bytes.git"
+    "url": "git+https://github.com/hypercore-skunkworks/bits-to-bytes.git"
   },
   "author": "Kasper Isager Dalsgarð <kasper@funktionel.co>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hypercore-skunkworks/bits-and-bytes/issues"
+    "url": "https://github.com/hypercore-skunkworks/bits-to-bytes/issues"
   },
-  "homepage": "https://github.com/hypercore-skunkworks/bits-and-bytes#readme",
+  "homepage": "https://github.com/hypercore-skunkworks/bits-to-bytes#readme",
   "dependencies": {
     "b4a": "^1.5.0"
   },
