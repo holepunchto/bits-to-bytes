@@ -30,6 +30,38 @@ function set (buffer, bit, value = true) {
   return true
 }
 
+function setRange (buffer, start, end, value = true) {
+  const n = buffer.BYTES_PER_ELEMENT * 8
+
+  let remaining = end - start
+  let offset = start & (n - 1)
+  let i = (start - offset) / n
+
+  let changed = false
+
+  while (remaining > 0) {
+    const mask = (2 ** Math.min(remaining, n - offset) - 1) << offset
+
+    if (value) {
+      if ((buffer[i] & mask) !== mask) {
+        buffer[i] |= mask
+        changed = true
+      }
+    } else {
+      if ((buffer[i] & mask) !== 0) {
+        buffer[i] &= ~mask
+        changed = true
+      }
+    }
+
+    remaining -= n - offset
+    offset = 0
+    i++
+  }
+
+  return changed
+}
+
 function toggle (buffer, bit) {
   const n = buffer.BYTES_PER_ELEMENT * 8
 
@@ -43,6 +75,10 @@ function toggle (buffer, bit) {
 
 function remove (buffer, bit) {
   return set(buffer, bit, false)
+}
+
+function removeRange (buffer, start, end) {
+  return setRange(buffer, start, end, false)
 }
 
 function of (...bits) {
@@ -63,8 +99,10 @@ module.exports = {
   byteLength,
   get,
   set,
+  setRange,
   toggle,
   remove,
+  removeRange,
   of,
   from,
   iterator

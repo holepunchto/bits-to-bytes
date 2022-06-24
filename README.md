@@ -33,6 +33,10 @@ Get the given bit, which will either be `true` (set) or `false` (unset).
 
 Set the given bit to `value`, which defaults to `true`. Returns `true` if the bit changed, otherwise `false`.
 
+#### `const changed = bits.setRange(buffer, start, end[, value])`
+
+Set the given bit range to `value`, which defaults to `true`. Returns `true` if any of the bits changed, otherwise `false`.
+
 #### `const b = bits.toggle(buffer, bit)`
 
 Toggle the given bit, returning its new value.
@@ -40,6 +44,10 @@ Toggle the given bit, returning its new value.
 #### `const changed = bits.remove(buffer, bit)`
 
 Unset the given bit. Returns `true` if the bit was set, otherwise `false`.
+
+#### `const changed = bits.removeRange(buffer, start, end)`
+
+Unset the given bit range. Returns `true` if any of the bits were set, otherwise `false`.
 
 #### `const buffer = bits.of(...values)`
 
