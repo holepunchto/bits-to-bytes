@@ -62,6 +62,39 @@ function setRange (buffer, start, end, value = true) {
   return changed
 }
 
+function fill (buffer, value, start = 0, end = buffer.byteLength * 8) {
+  const n = buffer.BYTES_PER_ELEMENT * 8
+  let i, j
+
+  {
+    const offset = start & (n - 1)
+    i = (start - offset) / n
+
+    if (offset !== 0) {
+      const mask = (2 ** Math.min(n - offset, end - start) - 1) << offset
+
+      if (value) buffer[i] |= mask
+      else buffer[i] &= ~mask
+
+      i++
+    }
+  }
+
+  {
+    const offset = end & (n - 1)
+    j = (end - offset) / n
+
+    if (offset !== 0 && j >= i) {
+      const mask = (2 ** offset) - 1
+
+      if (value) buffer[j] |= mask
+      else buffer[j] &= ~mask
+    }
+  }
+
+  return buffer.fill(value ? (2 ** n) - 1 : 0, i, j)
+}
+
 function toggle (buffer, bit) {
   const n = buffer.BYTES_PER_ELEMENT * 8
 
@@ -100,6 +133,7 @@ module.exports = {
   get,
   set,
   setRange,
+  fill,
   toggle,
   remove,
   removeRange,

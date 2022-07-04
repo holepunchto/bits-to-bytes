@@ -37,6 +37,12 @@ Set the given bit to `value`, which defaults to `true`. Returns `true` if the bi
 
 Set the given bit range to `value`, which defaults to `true`. Returns `true` if any of the bits changed, otherwise `false`.
 
+If you don't need the additional information about whether any of the bits changed, consider `bits.fill()` as a more performant alternative.
+
+#### `buffer = bits.fill(buffer, value[, start[, end]])`
+
+Fill the given bit range with `value`. `start` defaults to `0` and `end` defaults to the bit length of the array. Returns the modified array.
+
 #### `const b = bits.toggle(buffer, bit)`
 
 Toggle the given bit, returning its new value.
