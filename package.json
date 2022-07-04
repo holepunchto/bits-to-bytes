@@ -1,6 +1,6 @@
 {
   "name": "bits-to-bytes",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Functions for doing bit manipulation of typed arrays",
   "main": "index.js",
   "files": [
