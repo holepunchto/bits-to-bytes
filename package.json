@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hypercore-skunkworks/bits-to-bytes.git"
+    "url": "git+https://github.com/holepunchto/bits-to-bytes.git"
   },
   "author": "Kasper Isager Dalsgarð <kasper@funktionel.co>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hypercore-skunkworks/bits-to-bytes/issues"
+    "url": "https://github.com/holepunchto/bits-to-bytes/issues"
   },
-  "homepage": "https://github.com/hypercore-skunkworks/bits-to-bytes#readme",
+  "homepage": "https://github.com/holepunchto/bits-to-bytes#readme",
   "dependencies": {
     "b4a": "^1.5.0"
   },
