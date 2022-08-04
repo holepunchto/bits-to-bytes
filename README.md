@@ -55,6 +55,14 @@ Unset the given bit. Returns `true` if the bit was set, otherwise `false`.
 
 Unset the given bit range. Returns `true` if any of the bits were set, otherwise `false`.
 
+#### `const index = bits.indexOf(buffer, value[, position])`
+
+Return the index of the first occurrence of `value`, or `-1` if not found. If `position` is given, return the first index that is greater than or equal to `position`.
+
+#### `const index = bits.lastIndexOf(buffer, value[, position])`
+
+Return the index of the last occurrence of `value`, or `-1` if not found. If `position` is given, return the last index that is less than or equal to `position`.
+
 #### `const buffer = bits.of(...values)`
 
 Create a buffer containing the given bits.

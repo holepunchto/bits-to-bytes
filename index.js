@@ -114,6 +114,22 @@ function removeRange (buffer, start, end) {
   return setRange(buffer, start, end, false)
 }
 
+function indexOf (buffer, value, position = 0) {
+  for (let i = position, n = buffer.byteLength * 8; i < n; i++) {
+    if (get(buffer, i) === value) return i
+  }
+
+  return -1
+}
+
+function lastIndexOf (buffer, value, position = buffer.byteLength * 8 - 1) {
+  for (let i = position; i >= 0; i--) {
+    if (get(buffer, i) === value) return i
+  }
+
+  return -1
+}
+
 function of (...bits) {
   return from(bits)
 }
@@ -137,6 +153,8 @@ module.exports = {
   toggle,
   remove,
   removeRange,
+  indexOf,
+  lastIndexOf,
   of,
   from,
   iterator
