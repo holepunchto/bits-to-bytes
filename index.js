@@ -64,6 +64,7 @@ function setRange (buffer, start, end, value = true) {
 
 function fill (buffer, value, start = 0, end = buffer.byteLength * 8) {
   const n = buffer.BYTES_PER_ELEMENT * 8
+
   let i, j
 
   {
@@ -130,6 +131,49 @@ function lastIndexOf (buffer, value, position = buffer.byteLength * 8 - 1) {
   return -1
 }
 
+function popcnt (n) {
+  n = n - ((n >>> 1) & 0x55555555)
+  n = (n & 0x33333333) + ((n >>> 2) & 0x33333333)
+  n = (n + (n >>> 4)) & 0x0f0f0f0f
+  n = (n * 0x01010101) >>> 24
+  return n
+}
+
+function count (buffer, start = 0, end = buffer.byteLength * 8) {
+  const n = buffer.BYTES_PER_ELEMENT * 8
+
+  let i, j
+  let c = 0
+
+  {
+    const offset = start & (n - 1)
+    i = (start - offset) / n
+
+    if (offset !== 0) {
+      const mask = (2 ** Math.min(n - offset, end - start) - 1) << offset
+
+      c += popcnt(buffer[i] & mask)
+
+      i++
+    }
+  }
+
+  {
+    const offset = end & (n - 1)
+    j = (end - offset) / n
+
+    if (offset !== 0 && j >= i) {
+      const mask = (2 ** offset) - 1
+
+      c += popcnt(buffer[i] & mask)
+    }
+  }
+
+  while (i < j) c += popcnt(buffer[i++])
+
+  return c
+}
+
 function of (...bits) {
   return from(bits)
 }
@@ -155,6 +199,7 @@ module.exports = {
   removeRange,
   indexOf,
   lastIndexOf,
+  count,
   of,
   from,
   iterator

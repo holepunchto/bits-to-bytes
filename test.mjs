@@ -106,3 +106,30 @@ test('indexOf', (t) => {
     })
   })
 })
+
+test('count', (t) => {
+  const { buffer } = Uint8Array.from([
+    0b11011101,
+    0b10110011,
+    0b10011001,
+    0b11011110
+  ])
+
+  t.test('uint8array', (t) => {
+    const arr = new Uint8Array(buffer)
+
+    t.is(bits.count(arr, 2, 30), 18)
+  })
+
+  t.test('uint16array', (t) => {
+    const arr = new Uint16Array(buffer)
+
+    t.is(bits.count(arr, 2, 30), 18)
+  })
+
+  t.test('uint32array', (t) => {
+    const arr = new Uint32Array(buffer)
+
+    t.is(bits.count(arr), 21)
+  })
+})

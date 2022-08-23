@@ -63,6 +63,10 @@ Return the index of the first occurrence of `value`, or `-1` if not found. If `p
 
 Return the index of the last occurrence of `value`, or `-1` if not found. If `position` is given, return the last index that is less than or equal to `position`.
 
+#### `const n = bits.count(buffer[, start[, end]])`
+
+Count the number of bits set in the given bit range. `start` defaults to `0` and `end` defaults to the bit length of the array.
+
 #### `const buffer = bits.of(...values)`
 
 Create a buffer containing the given bits.
