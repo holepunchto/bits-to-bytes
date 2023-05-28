@@ -81,4 +81,4 @@ Create an iterator over bits.
 
 ## License
 
-ISC
+Apache 2.0
