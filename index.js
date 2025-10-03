@@ -1,10 +1,10 @@
 const b4a = require('b4a')
 
-function byteLength (size) {
+function byteLength(size) {
   return Math.ceil(size / 8)
 }
 
-function get (buffer, bit) {
+function get(buffer, bit) {
   const n = buffer.BYTES_PER_ELEMENT * 8
 
   const offset = bit & (n - 1)
@@ -13,7 +13,7 @@ function get (buffer, bit) {
   return (buffer[i] & (1 << offset)) !== 0
 }
 
-function set (buffer, bit, value = true) {
+function set(buffer, bit, value = true) {
   const n = buffer.BYTES_PER_ELEMENT * 8
 
   const offset = bit & (n - 1)
@@ -30,7 +30,7 @@ function set (buffer, bit, value = true) {
   return true
 }
 
-function setRange (buffer, start, end, value = true) {
+function setRange(buffer, start, end, value = true) {
   const n = buffer.BYTES_PER_ELEMENT * 8
 
   let remaining = end - start
@@ -62,7 +62,7 @@ function setRange (buffer, start, end, value = true) {
   return changed
 }
 
-function fill (buffer, value, start = 0, end = buffer.byteLength * 8) {
+function fill(buffer, value, start = 0, end = buffer.byteLength * 8) {
   const n = buffer.BYTES_PER_ELEMENT * 8
 
   let i, j
@@ -86,17 +86,17 @@ function fill (buffer, value, start = 0, end = buffer.byteLength * 8) {
     j = (end - offset) / n
 
     if (offset !== 0 && j >= i) {
-      const mask = (2 ** offset) - 1
+      const mask = 2 ** offset - 1
 
       if (value) buffer[j] |= mask
       else buffer[j] &= ~mask
     }
   }
 
-  return buffer.fill(value ? (2 ** n) - 1 : 0, i, j)
+  return buffer.fill(value ? 2 ** n - 1 : 0, i, j)
 }
 
-function toggle (buffer, bit) {
+function toggle(buffer, bit) {
   const n = buffer.BYTES_PER_ELEMENT * 8
 
   const offset = bit & (n - 1)
@@ -107,15 +107,15 @@ function toggle (buffer, bit) {
   return (buffer[i] & mask) !== 0
 }
 
-function remove (buffer, bit) {
+function remove(buffer, bit) {
   return set(buffer, bit, false)
 }
 
-function removeRange (buffer, start, end) {
+function removeRange(buffer, start, end) {
   return setRange(buffer, start, end, false)
 }
 
-function indexOf (buffer, value, position = 0) {
+function indexOf(buffer, value, position = 0) {
   for (let i = position, n = buffer.byteLength * 8; i < n; i++) {
     if (get(buffer, i) === value) return i
   }
@@ -123,7 +123,7 @@ function indexOf (buffer, value, position = 0) {
   return -1
 }
 
-function lastIndexOf (buffer, value, position = buffer.byteLength * 8 - 1) {
+function lastIndexOf(buffer, value, position = buffer.byteLength * 8 - 1) {
   for (let i = position; i >= 0; i--) {
     if (get(buffer, i) === value) return i
   }
@@ -131,7 +131,7 @@ function lastIndexOf (buffer, value, position = buffer.byteLength * 8 - 1) {
   return -1
 }
 
-function popcnt (n) {
+function popcnt(n) {
   n = n - ((n >>> 1) & 0x55555555)
   n = (n & 0x33333333) + ((n >>> 2) & 0x33333333)
   n = (n + (n >>> 4)) & 0x0f0f0f0f
@@ -139,7 +139,7 @@ function popcnt (n) {
   return n
 }
 
-function count (buffer, start = 0, end = buffer.byteLength * 8) {
+function count(buffer, start = 0, end = buffer.byteLength * 8) {
   const n = buffer.BYTES_PER_ELEMENT * 8
 
   let i, j
@@ -163,7 +163,7 @@ function count (buffer, start = 0, end = buffer.byteLength * 8) {
     j = (end - offset) / n
 
     if (offset !== 0 && j >= i) {
-      const mask = (2 ** offset) - 1
+      const mask = 2 ** offset - 1
 
       c += popcnt(buffer[i] & mask)
     }
@@ -174,17 +174,17 @@ function count (buffer, start = 0, end = buffer.byteLength * 8) {
   return c
 }
 
-function of (...bits) {
+function of(...bits) {
   return from(bits)
 }
 
-function from (bits) {
+function from(bits) {
   const buffer = b4a.alloc(byteLength(bits.length))
   for (let i = 0; i < bits.length; i++) set(buffer, i, bits[i])
   return buffer
 }
 
-function * iterator (buffer) {
+function* iterator(buffer) {
   for (let i = 0, n = buffer.byteLength * 8; i < n; i++) yield get(buffer, i)
 }
 
