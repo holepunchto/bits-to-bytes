@@ -4,17 +4,12 @@ import bits from './index.js'
 
 test('get', (t) => {
   const { buffer } = Uint8Array.from([
-    0b00000101,
-    0b10010000,
-    0b01010101,
-    0b10101010
+    0b00000101, 0b10010000, 0b01010101, 0b10101010
   ])
 
   const expected = [
-    1, 0, 1, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 1, 0, 0, 1,
-    1, 0, 1, 0, 1, 0, 1, 0,
-    0, 1, 0, 1, 0, 1, 0, 1
+    1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0,
+    1, 0, 1, 0, 1, 0, 1
   ]
 
   t.test('uint8array', (t) => {
@@ -54,10 +49,7 @@ test('get', (t) => {
 test('indexOf', (t) => {
   t.test('set', (t) => {
     const { buffer } = Uint8Array.from([
-      0b00000000,
-      0b01000000,
-      0b00000010,
-      0b00000000
+      0b00000000, 0b01000000, 0b00000010, 0b00000000
     ])
 
     t.test('uint8array', (t) => {
@@ -73,10 +65,7 @@ test('indexOf', (t) => {
 
   t.test('unset', (t) => {
     const { buffer } = Uint8Array.from([
-      0b11111111,
-      0b10111111,
-      0b11111101,
-      0b11111111
+      0b11111111, 0b10111111, 0b11111101, 0b11111111
     ])
 
     t.test('uint8array', (t) => {
@@ -92,10 +81,7 @@ test('indexOf', (t) => {
 
   t.test('not found', (t) => {
     const { buffer } = Uint8Array.from([
-      0b11111111,
-      0b11111111,
-      0b11111111,
-      0b11111111
+      0b11111111, 0b11111111, 0b11111111, 0b11111111
     ])
 
     t.test('uint8array', (t) => {
@@ -109,10 +95,7 @@ test('indexOf', (t) => {
 
 test('count', (t) => {
   const { buffer } = Uint8Array.from([
-    0b11011101,
-    0b10110011,
-    0b10011001,
-    0b11011110
+    0b11011101, 0b10110011, 0b10011001, 0b11011110
   ])
 
   t.test('uint8array', (t) => {
