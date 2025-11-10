@@ -8,8 +8,10 @@
   ],
   "scripts": {
     "format": "prettier --write .",
-    "lint": "prettier --check .",
-    "test": "brittle test.mjs"
+    "lint": "prettier --check . && lunte",
+    "test": "npm run test:node && npm run test:bare",
+    "test:node": "brittle-node --coverage test.mjs",
+    "test:bare": "brittle-bare --coverage test.mjs"
   },
   "repository": {
     "type": "git",
@@ -26,6 +28,7 @@
   },
   "devDependencies": {
     "brittle": "^3.0.4",
+    "lunte": "^1.3.0",
     "nanobench": "^2.1.1",
     "prettier": "^3.6.2",
     "prettier-config-holepunch": "^1.0.0"
