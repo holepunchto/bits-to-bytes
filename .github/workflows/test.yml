@@ -13,17 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: "22"
 
-      - name: Install dependencies
-        run: npm install
+      - run: npm install
 
-      - name: Run lint
-        run: |
-          npm run lint
+      - run: npm run lint
 
   test-node:
     strategy:
@@ -46,16 +42,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: "22"
 
-      - name: Install dependencies
-        run: npm i
+      - run: npm i
 
-      - name: Test
-        run: npm run test:node
+      - run: npm run test:node
 
   test-bare:
     strategy:
@@ -78,16 +71,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: "22"
 
-      - name: Install dependencies
-        run: npm i
+      - run: npm i
 
-      - name: Install bare
-        run: npm i -g bare
+      - run: npm i -g bare
 
-      - name: Test
-        run: npm run test:bare
+      - run: npm run test:bare
