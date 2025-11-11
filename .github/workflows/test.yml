@@ -12,13 +12,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-
+        with: { node-version: "22" }
       - run: npm install
-
       - run: npm run lint
 
   test-node:
@@ -41,13 +37,9 @@ jobs:
     name: Node ${{ matrix.platform }}-${{ matrix.arch }}
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-
+        with: { node-version: "22" }
       - run: npm i
-
       - run: npm run test:node
 
   test-bare:
@@ -70,13 +62,8 @@ jobs:
     name: Bare ${{ matrix.platform }}-${{ matrix.arch }}
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-
+        with: { node-version: "22" }
       - run: npm i
-
       - run: npm i -g bare
-
       - run: npm run test:bare
