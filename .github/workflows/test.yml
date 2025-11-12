@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
-        with: { node-version: '22' }
+        with: { node-version: lts/* }
       - run: npm install
       - run: npm run lint
 
@@ -23,22 +23,19 @@ jobs:
         include:
           - os: ubuntu-latest
             platform: linux
-            arch: x64
 
           - os: macos-latest
             platform: darwin
-            arch: x64
 
           - os: windows-latest
             platform: win32
-            arch: x64
 
     runs-on: ${{ matrix.os }}
-    name: Node ${{ matrix.platform }}-${{ matrix.arch }}
+    name: Node ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
-        with: { node-version: '22' }
+        with: { node-version: lts/* }
       - run: npm i
       - run: npm run test:node
 
@@ -48,22 +45,19 @@ jobs:
         include:
           - os: ubuntu-latest
             platform: linux
-            arch: x64
 
           - os: macos-latest
             platform: darwin
-            arch: x64
 
           - os: windows-latest
             platform: win32
-            arch: x64
 
     runs-on: ${{ matrix.os }}
-    name: Bare ${{ matrix.platform }}-${{ matrix.arch }}
+    name: Bare ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
-        with: { node-version: '22' }
+        with: { node-version: lts/* }
       - run: npm i
       - run: npm i -g bare-runtime
       - run: npm run test:bare
