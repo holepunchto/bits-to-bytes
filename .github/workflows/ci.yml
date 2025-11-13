@@ -1,0 +1,27 @@
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    name: Checks
+
+    steps:
+      - uses: mikker/holepunch-actions/setup
+      - run: npm run lint
+
+  test:
+    runs-on: ${{ matrix.os }}
+    name: Test ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+          - os: macos-latest
+          - os: windows-latest
+    steps:
+      - uses: mikker/holepunch-actions/setup
+      - run: npm test
