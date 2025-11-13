@@ -25,4 +25,5 @@ jobs:
           - os: windows-latest
     steps:
       - uses: mikker/holepunch-actions/setup@main
+      - run: npm install -g bare-runtime
       - run: npm test
