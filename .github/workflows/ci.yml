@@ -11,7 +11,7 @@ jobs:
     name: Checks
 
     steps:
-      - uses: mikker/holepunch-actions/setup@main
+      - uses: holepunchto/actions/setup@current
       - run: npm run lint
 
   test:
@@ -24,6 +24,6 @@ jobs:
           - os: macos-latest
           - os: windows-latest
     steps:
-      - uses: mikker/holepunch-actions/setup@main
+      - uses: holepunchto/actions/setup@current
       - run: npm install -g bare-runtime
       - run: npm test
